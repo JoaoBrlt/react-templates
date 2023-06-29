@@ -229,7 +229,48 @@ nano package.json
 
 ### Linting
 
-- Install ESLint to lint the code:
+#### Prettier
+
+- Install Prettier to enforce code style:
+
+```bash
+npm install --save-dev prettier
+```
+
+- Create the Prettier configuration:
+
+```bash
+nano .prettierrc
+```
+
+```json
+{
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": false
+}
+```
+
+- Update the `package.json` file to add new scripts:
+
+```bash
+nano package.json
+```
+
+```json
+{
+  "scripts": {
+    "prettier": "prettier --check .",
+    "prettier:fix": "prettier --write ."
+  }
+}
+```
+
+#### ESLint
+
+- Install ESLint to lint JavaScript / TypeScript files:
 
 ```bash
 npm init @eslint/config
@@ -250,6 +291,12 @@ The config that you've selected requires the following dependencies:
 ✔ Which package manager do you want to use? · [npm]
 ```
 
+- Integrate Prettier with ESLint:
+
+```bash
+npm install --save-dev eslint-config-prettier
+```
+
 - Install ESLint plugins for React:
 
 ```bash
@@ -260,24 +307,6 @@ npm install --save-dev eslint-plugin-react-hooks eslint-plugin-jsx-a11y
 
 ```bash
 npm install --save-dev eslint-plugin-jest eslint-plugin-jest-dom eslint-plugin-testing-library
-```
-
-- Install Prettier to enforce code style:
-
-```bash
-npm install --save-dev prettier
-```
-
-- Initialize the Prettier configuration:
-
-```bash
-echo {} > .prettierrc
-```
-
-- Integrate Prettier with ESLint:
-
-```bash
-npm install --save-dev eslint-config-prettier
 ```
 
 - Update the ESLint configuration to extend recommended configurations and enable the plugins:
@@ -296,9 +325,42 @@ nano package.json
 {
   "scripts": {
     "eslint": "eslint .",
-    "eslint:fix": "eslint --fix .",
-    "prettier": "prettier --check .",
-    "prettier:fix": "prettier --write ."
+    "eslint:fix": "eslint --fix ."
+  }
+}
+```
+
+#### Stylelint
+
+- Install Stylelint to lint stylesheets:
+
+```bash
+npm install --save-dev stylelint stylelint-config-standard-scss
+```
+
+- Create the Stylelint configuration:
+
+```bash
+nano .stylelintrc.json
+```
+
+```json
+{
+  "extends": ["stylelint-config-standard-scss"]
+}
+```
+
+- Update the `package.json` file to add new scripts:
+
+```bash
+nano package.json
+```
+
+```json
+{
+  "scripts": {
+    "stylelint": "stylelint **/*.{css,scss}",
+    "stylelint:fix": "stylelint --fix **/*.{css,scss}"
   }
 }
 ```
