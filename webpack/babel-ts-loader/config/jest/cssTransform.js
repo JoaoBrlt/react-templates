@@ -1,3 +1,5 @@
+"use strict";
+
 // This is a custom Jest transformer turning style imports into empty objects.
 // See https://jestjs.io/docs/webpack
 

@@ -1,3 +1,5 @@
+"use strict";
+
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -14,8 +16,12 @@ module.exports = {
   entry: "./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: isProduction ? "static/js/[name].[contenthash:8].js" : "static/js/bundle.js",
-    chunkFilename: isProduction ? "static/js/[name].[contenthash:8].chunk.js" : "static/js/[name].chunk.js",
+    filename: isProduction
+      ? "static/js/[name].[contenthash:8].js"
+      : "static/js/bundle.js",
+    chunkFilename: isProduction
+      ? "static/js/[name].[contenthash:8].chunk.js"
+      : "static/js/[name].chunk.js",
     assetModuleFilename: "static/media/[name].[hash][ext]",
     clean: true,
   },
@@ -43,6 +49,7 @@ module.exports = {
         ],
         exclude: /node_modules/,
       },
+
       // TypeScript
       {
         test: /\.(ts|tsx)$/i,
@@ -57,6 +64,7 @@ module.exports = {
         ],
         exclude: /node_modules/,
       },
+
       // CSS / CSS modules
       {
         test: /\.css$/i,
@@ -75,6 +83,7 @@ module.exports = {
           },
         ],
       },
+
       // SCSS / SCSS modules
       {
         test: /\.scss$/i,
@@ -95,6 +104,7 @@ module.exports = {
           "sass-loader",
         ],
       },
+
       // Assets
       {
         test: /\.(png|jpg|jpeg|bmp|gif|svg)$/i,

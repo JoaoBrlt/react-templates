@@ -1,7 +1,12 @@
+"use strict";
+
 module.exports = {
   roots: ["<rootDir>/src"],
   testEnvironment: "jsdom",
-  testMatch: ["<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}", "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"],
+  testMatch: [
+    "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+    "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}",
+  ],
   setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
   collectCoverageFrom: ["src/**/*.{js,jsx,ts,tsx}", "!src/**/*.d.ts"],
   transform: {
@@ -15,7 +20,8 @@ module.exports = {
     "\\.(css|scss)$": "<rootDir>/config/jest/cssTransform.js",
 
     // Assets
-    "^(?!.*.(js|jsx|ts|tsx|css|scss|json)$)": "<rootDir>/config/jest/fileTransform.js",
+    "^(?!.*.(js|jsx|ts|tsx|css|scss|json)$)":
+      "<rootDir>/config/jest/fileTransform.js",
   },
   transformIgnorePatterns: ["/node_modules/", "\\.module\\.(css|scss)$"],
   modulePaths: [],
@@ -24,6 +30,9 @@ module.exports = {
     "\\.module\\.(css|scss)$": "identity-obj-proxy",
   },
   moduleFileExtensions: ["tsx", "ts", "jsx", "js", "json", "node"],
-  watchPlugins: ["jest-watch-typeahead/filename", "jest-watch-typeahead/testname"],
+  watchPlugins: [
+    "jest-watch-typeahead/filename",
+    "jest-watch-typeahead/testname",
+  ],
   resetMocks: true,
 };

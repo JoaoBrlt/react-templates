@@ -211,7 +211,11 @@ nano package.json
 {
   "browserslist": {
     "production": [">0.2%", "not dead", "not op_mini all"],
-    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
 ```
@@ -242,7 +246,7 @@ The config that you've selected requires the following dependencies:
 - Install ESLint plugins for React:
 
 ```bash
-npm install --save-dev eslint-plugin-react-hooks
+npm install --save-dev eslint-plugin-react-hooks eslint-plugin-jsx-a11y
 ```
 
 - Install ESLint plugins for Jest and Testing Library:
@@ -284,10 +288,10 @@ nano package.json
 ```json
 {
   "scripts": {
-    "lint": "eslint --ext .tsx,.ts,.jsx,.js src/",
-    "lint:fix": "npm run lint -- --fix",
-    "format": "prettier --check .",
-    "format:fix": "prettier --write ."
+    "eslint": "eslint .",
+    "eslint:fix": "eslint --fix .",
+    "prettier": "prettier --check .",
+    "prettier:fix": "prettier --write ."
   }
 }
 ```
