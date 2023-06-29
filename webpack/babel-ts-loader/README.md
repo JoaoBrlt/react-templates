@@ -184,10 +184,10 @@ npm install --save-dev @pmmmwh/react-refresh-webpack-plugin react-refresh
 nano webpack.config.js
 ```
 
-- Install `cross-env` to build cross-platform compatible scripts:
+- Install `rimraf` to build cross-platform compatible scripts:
 
 ```bash
-npm install --save-dev cross-env
+npm install --save-dev rimraf
 ```
 
 - Update the `package.json` file to add new scripts and the browserslist:
@@ -199,18 +199,25 @@ nano package.json
 ```json
 {
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack serve",
+    "start": "webpack serve",
+    "watch": "webpack --watch",
     "build": "npm run build:prod",
-    "build:dev": "cross-env NODE_ENV=development webpack",
-    "build:prod": "cross-env NODE_ENV=production webpack"
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production --node-env=production",
+    "clean": "rimraf dist/ coverage/"
   }
 }
 ```
 
+<!-- prettier-ignore -->
 ```json
 {
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
