@@ -3,6 +3,9 @@
 # Output
 /dist
 
+# Testing
+/coverage
+
 # Configuration
 package.json
 package-lock.json

@@ -3,5 +3,9 @@
 # Output
 /dist
 
+# Testing
+/coverage
+
 # Configuration
+jest.config.js
 webpack.config.js

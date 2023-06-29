@@ -40,6 +40,92 @@ npx tsc --init
 nano tsconfig.json
 ```
 
+### Testing
+
+- Install Jest dependencies:
+
+```bash
+npm install --save-dev jest jest-environment-jsdom @types/jest ts-jest identity-obj-proxy jest-watch-typeahead
+```
+
+- Install React Testing Library dependencies:
+
+```bash
+npm install --save-dev @testing-library/react @testing-library/jest-dom @testing-library/user-event
+```
+
+- Create a config folder for Jest:
+
+```bash
+mkdir -p config/jest
+```
+
+- Create a Jest transformer for stylesheets:
+
+```bash
+nano config/jest/cssTransform.js
+```
+
+```js
+// This is a custom Jest transformer turning style imports into empty objects.
+// See https://jestjs.io/docs/webpack
+
+module.exports = {
+  process() {
+    return {
+      code: `module.exports = {};`,
+    };
+  },
+  getCacheKey() {
+    // The output is always the same.
+    return "cssTransform";
+  },
+};
+```
+
+- Create a Jest transformer for files:
+
+```bash
+nano config/jest/fileTransform.js
+```
+
+```js
+const path = require("path");
+
+// This is a custom Jest transformer turning file imports into filenames.
+// See https://jestjs.io/docs/webpack
+
+module.exports = {
+  process(sourceText, sourcePath) {
+    return {
+      code: `module.exports = ${JSON.stringify(path.basename(sourcePath))};`,
+    };
+  },
+};
+```
+
+- Create the Jest configuration:
+
+```bash
+nano jest.config.js
+```
+
+- Update the `package.json` file to add new scripts:
+
+```bash
+nano package.json
+```
+
+```json
+{
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  }
+}
+```
+
 ### Bundling
 
 - Install Webpack dependencies:
@@ -153,10 +239,16 @@ The config that you've selected requires the following dependencies:
 ✔ Which package manager do you want to use? · [npm]
 ```
 
-- Install additional ESLint plugins:
+- Install ESLint plugins for React:
 
 ```bash
 npm install --save-dev eslint-plugin-react-hooks
+```
+
+- Install ESLint plugins for Jest and Testing Library:
+
+```bash
+npm install --save-dev eslint-plugin-jest eslint-plugin-jest-dom eslint-plugin-testing-library
 ```
 
 - Install Prettier to enforce code style:
