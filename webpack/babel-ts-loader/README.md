@@ -149,7 +149,7 @@ npm install --save-dev babel-loader @babel/core @babel/preset-env @babel/preset-
 - Create the Babel configuration and enable the presets:
 
 ```bash
-nano .babelrc
+nano .babelrc.json
 ```
 
 ```json
@@ -166,13 +166,15 @@ nano .babelrc
 }
 ```
 
-- Install the TypeScript loader and a plugin to perform type checking asynchronously:
+- Install the TypeScript loader and a plugin to perform type checking
+  asynchronously:
 
 ```bash
 npm install --save-dev ts-loader fork-ts-checker-webpack-plugin
 ```
 
-- Install the React Refresh Webpack plugin to enable Hot Module Replacement (HMR) for React:
+- Install the React Refresh Webpack plugin to enable Hot Module Replacement (
+  HMR) for React:
 
 ```bash
 npm install --save-dev @pmmmwh/react-refresh-webpack-plugin react-refresh
@@ -199,12 +201,12 @@ nano package.json
 ```json
 {
   "scripts": {
+    "clean": "rimraf dist/ coverage/",
     "start": "webpack serve",
     "watch": "webpack --watch",
     "build": "npm run build:prod",
     "build:dev": "webpack --mode=development",
-    "build:prod": "webpack --mode=production --node-env=production",
-    "clean": "rimraf dist/ coverage/"
+    "build:prod": "webpack --mode=production --node-env=production"
   }
 }
 ```
@@ -240,7 +242,7 @@ npm install --save-dev prettier
 - Create the Prettier configuration:
 
 ```bash
-nano .prettierrc
+nano .prettierrc.json
 ```
 
 ```json
@@ -309,7 +311,8 @@ npm install --save-dev eslint-plugin-react-hooks eslint-plugin-jsx-a11y
 npm install --save-dev eslint-plugin-jest eslint-plugin-jest-dom eslint-plugin-testing-library
 ```
 
-- Update the ESLint configuration to extend recommended configurations and enable the plugins:
+- Update the ESLint configuration to extend recommended configurations and
+  enable the plugins:
 
 ```bash
 nano .eslintrc.json
@@ -363,4 +366,44 @@ nano package.json
     "stylelint:fix": "stylelint --fix **/*.{css,scss}"
   }
 }
+```
+
+### _(Optional)_ Git Hooks
+
+- Install `lint-staged` to lint staged files:
+
+```bash
+npm install --save-dev lint-staged
+```
+
+- Create the `lint-staged` configuration:
+
+```json
+{
+  "*": "prettier --write --ignore-unknown",
+  "*.{js,jsx,ts,tsx}": "eslint --fix",
+  "*.{css,scss}": "stylelint --fix"
+}
+```
+
+> This will run Prettier on all supported files, ESLint on JavaScript /
+> TypeScript
+> files and Stylelint on CSS / SCSS files.
+
+- Install Husky to add git hooks:
+
+```bash
+npx husky-init && npm install
+```
+
+- Remove the default `pre-commit` hook:
+
+```bash
+rm .husky/pre-commit
+```
+
+- Add a `pre-commit` hook to run `lint-staged` every time you commit:
+
+```bash
+npx husky add .husky/pre-commit "npx lint-staged"
 ```
