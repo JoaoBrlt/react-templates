@@ -378,6 +378,10 @@ npm install --save-dev lint-staged
 
 - Create the `lint-staged` configuration:
 
+```bash
+nano .lintstagedrc.json
+```
+
 ```json
 {
   "*": "prettier --write --ignore-unknown",
