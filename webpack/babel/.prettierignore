@@ -1,0 +1,12 @@
+# Files ignored by Prettier, see https://prettier.io/docs/en/ignore.html
+
+# Output
+/dist
+
+# Testing
+/coverage
+
+# Configuration
+package.json
+package-lock.json
+tsconfig.json

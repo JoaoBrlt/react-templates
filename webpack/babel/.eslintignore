@@ -1,0 +1,7 @@
+# Files ignored by ESLint, see https://eslint.org/docs/latest/use/configure/ignore
+
+# Output
+/dist
+
+# Testing
+/coverage
