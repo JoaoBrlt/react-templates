@@ -1,0 +1,8 @@
+# Files ignored by Stylelint, see https://stylelint.io/user-guide/ignore-code/
+
+# Output
+/dist
+/storybook-static
+
+# Testing
+/coverage
